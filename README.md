@@ -1,6 +1,6 @@
 ## GitHub Typo Crawler
 
-This is a simple node script that will crawl through a GitHub repo for any spelling errors/typos.
+This is a simple Node.js script that will crawl through a GitHub repo, checking for any spelling errors/typos.
 
 It only analyzes `.html` and `.md` files.
 
@@ -11,7 +11,7 @@ This project uses [yeoji/Proofreader](https://github.com/yeoji/Proofreader) whic
 1. Clone the repository
 
 ```
-git clone git@github.com:yeoji/github-typo-crawler.git`
+git clone git@github.com:yeoji/github-typo-crawler.git
 ```
 
 2. Install dependencies
