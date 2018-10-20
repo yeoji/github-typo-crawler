@@ -35,7 +35,7 @@ const runProofreader = (files) => {
 }
 
 if(process.argv.length < 3) {
-   console.log('Please specify a GitHub repo to crawl (eg. sendgrid/docs)');
+   console.log('Please specify a GitHub repo to crawl (eg. yeoji/github-typo-crawler)');
    process.exit(1);
 }
 
