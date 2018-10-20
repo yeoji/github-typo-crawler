@@ -6,7 +6,8 @@
    "author": "yeoji",
    "license": "MIT",
    "scripts": {
-      "crawl": "node crawl.js"
+      "crawl": "node crawl.js",
+      "proofreader": "proofreader -l proofreader.txt -c proofreader.config -o json"
    },
    "dependencies": {
       "axios": "^0.18.0",
