@@ -1,0 +1,16 @@
+{
+   "name": "github-typo-crawler",
+   "version": "1.0.0",
+   "description": "Crawls GitHub repos for any typos in HTML and MD files",
+   "main": "crawl.js",
+   "author": "yeoji",
+   "license": "MIT",
+   "scripts": {
+      "crawl": "node crawl.js"
+   },
+   "dependencies": {
+      "axios": "^0.18.0",
+      "cheerio": "^1.0.0-rc.2",
+      "proofreader": "https://github.com/yeoji/Proofreader"
+   }
+}
