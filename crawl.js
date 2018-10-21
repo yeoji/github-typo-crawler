@@ -25,7 +25,7 @@ const listHtmlAndMdFiles = async () => {
 
    const filesList = response.data.paths;
    return filesList
-      .filter(file => file.endsWith('.md') || file.endsWith('.html'))
+      .filter(file => (file.endsWith('.md') || file.endsWith('.html')) && !file.endsWith('CHANGELOG.md'))
       .map(file => `https://github.com/${repo}/raw/master/` + file);
 }
 
