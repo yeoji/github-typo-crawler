@@ -52,4 +52,4 @@ const process = () => {
 
 module.exports = {
    processResults: process
-}
+};
