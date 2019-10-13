@@ -1,33 +1,23 @@
 const fs = require('fs');
 const axios = require('axios');
-const cheerio = require('cheerio');
-const { execSync } = require('child_process');
-const { processResults } = require('./processResults');
+const {execSync} = require('child_process');
+const {processResults} = require('./processResults');
 
 const proofreaderInput = 'proofreader.txt';
 const repo = process.argv[2];
 
-const findTreeListUrl = async () => {
-   const response = await axios.get(`https://github.com/${repo}/find/master`);
-   const $ = cheerio.load(response.data);
 
-   return 'https://github.com' + $('table#tree-finder-results').data('url');
+const getRepoTree = async () => {
+    const response = await axios.get(`https://api.github.com/repos/${repo}/git/trees/master`);
+    return response.data.tree;
 };
 
 const listHtmlAndMdFiles = async () => {
-   const treeListUrl = await findTreeListUrl();
-   const response = await axios.get(treeListUrl, {
-      headers: {
-         'Accept': 'application/json',
-         'Referer': `https://github.com/${repo}/find/master`
-      }
-   });
-
-   const filesList = response.data.paths;
-   return filesList
-      .filter(file => (file.endsWith('.md') || file.endsWith('.html')) && !file.endsWith('CHANGELOG.md'))
-      .map(file => `https://github.com/${repo}/raw/master/` + file);
-}
+    const filesList = await getRepoTree();
+    return filesList
+        .filter(fileData => (fileData.path.endsWith('.md') || fileData.path.endsWith('.html')) && !fileData.path.endsWith("CHANGELOG.md"))
+        .map(f => f.path);
+};
 
 const runProofreader = (files) => {
    files.forEach(file => fs.appendFileSync(proofreaderInput, file + '\n'));
