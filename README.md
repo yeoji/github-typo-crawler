@@ -4,7 +4,13 @@ This is a simple Node.js script that will crawl through a GitHub repo, checking 
 
 It only analyzes `.html` and `.md` files.
 
-This project uses [yeoji/Proofreader](https://github.com/yeoji/Proofreader) which is forked from [kdzwinel/Proofreader](https://github.com/kdzwinel/Proofreader)
+This project uses [yeoji/Proofreader](https://github.com/yeoji/Proofreader) which is forked from [kdzwinel/Proofreader](https://github.com/kdzwinel/Proofreader).
+
+# Ignored files
+
+You can define files to ignore in a file tree by appending it into the `ignoredfiles.txt` file. The filename provided must be the exact match of the file to be excluded from checking.
+
+For your convenience, `CHANGELOG.md` is ignored by default (as specified in the file).
 
 ### Usage
 
