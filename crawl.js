@@ -20,19 +20,19 @@ const listHtmlAndMdFiles = async () => {
 };
 
 const runProofreader = (files) => {
-   files.forEach(file => fs.appendFileSync(proofreaderInput, file + '\n'));
-   execSync('yarn proofreader');
+    files.forEach(file => fs.appendFileSync(proofreaderInput, file + '\n'));
+    execSync('yarn proofreader');
+};
+
+if (process.argv.length < 3) {
+    console.log('Please specify a GitHub repo to crawl (eg. yeoji/github-typo-crawler)');
+    process.exit(1);
 }
 
-if(process.argv.length < 3) {
-   console.log('Please specify a GitHub repo to crawl (eg. yeoji/github-typo-crawler)');
-   process.exit(1);
-}
-
-if(fs.existsSync(proofreaderInput)) {
-   fs.unlinkSync(proofreaderInput);
+if (fs.existsSync(proofreaderInput)) {
+    fs.unlinkSync(proofreaderInput);
 }
 listHtmlAndMdFiles().then(files => {
-   runProofreader(files);
-   processResults();
+    runProofreader(files);
+    processResults();
 });
