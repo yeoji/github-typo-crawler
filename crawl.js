@@ -16,7 +16,7 @@ const listHtmlAndMdFiles = async () => {
     const filesList = await getRepoTree();
     return filesList
         .filter(fileData => (fileData.path.endsWith('.md') || fileData.path.endsWith('.html')) && !fileData.path.endsWith("CHANGELOG.md"))
-        .map(f => f.path);
+        .map(file => `https://github.com/${repo}/raw/master/` + file.path);
 };
 
 const runProofreader = (files) => {

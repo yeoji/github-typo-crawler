@@ -6,6 +6,12 @@ It only analyzes `.html` and `.md` files.
 
 This project uses [yeoji/Proofreader](https://github.com/yeoji/Proofreader) which is forked from [kdzwinel/Proofreader](https://github.com/kdzwinel/Proofreader)
 
+### Requirements
+
+```
+node v8
+```
+
 ### Usage
 
 1. Clone the repository
