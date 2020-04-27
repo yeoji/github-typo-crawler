@@ -11,13 +11,13 @@ const ignoredFiles = function () {
     return data.split('\n');
 }();
 
-const isFileValid = async (fileName) => {
+const isFileIgnored = (fileName) => {
     for (const e of ignoredFiles) {
         if (e.length > 0 && fileName.endsWith(e)) {
-            return false;
+            return true;
         }
     }
-    return true;
+    return false;
 };
 
 const getRepoTree = async () => {
@@ -28,7 +28,7 @@ const getRepoTree = async () => {
 const listHtmlAndMdFiles = async () => {
     const filesList = await getRepoTree();
     return filesList
-        .filter(fileData => (fileData.path.endsWith('.md') || fileData.path.endsWith('.html')) && !fileData.path.endsWith("CHANGELOG.md"))
+        .filter(fileData => (fileData.path.endsWith('.md') || fileData.path.endsWith('.html')) && !isFileIgnored(fileData.path))
         .map(file => `https://github.com/${repo}/raw/master/` + file.path);
 };
 
@@ -46,6 +46,8 @@ if (fs.existsSync(proofreaderInput)) {
     fs.unlinkSync(proofreaderInput);
 }
 listHtmlAndMdFiles().then(files => {
-    runProofreader(files);
-    processResults();
+    if(files.length > 0) {
+        runProofreader(files);
+        processResults();
+    }
 });

@@ -6,12 +6,6 @@ It only analyzes `.html` and `.md` files.
 
 This project uses [yeoji/Proofreader](https://github.com/yeoji/Proofreader) which is forked from [kdzwinel/Proofreader](https://github.com/kdzwinel/Proofreader).
 
-# Ignored files
-
-You can define files to ignore in a file tree by appending it into the `ignoredfiles.txt` file. The filename provided must be the exact match of the file to be excluded from checking.
-
-For your convenience, `CHANGELOG.md` is ignored by default (as specified in the file).
-
 ### Requirements
 
 ```
@@ -46,3 +40,9 @@ Because adding custom dictionaries did not work on [kdzwinel/Proofreader](https:
 To add your own words to the list of words to ignore in spellchecks, create a new file under `dictionaries` and start building your list (separated by a newline).
 
 The words will be picked up and filtered out from the final result.
+
+### Ignored files
+
+You can define files to ignore in a file tree by appending it into the `ignoredfiles.txt` file. The filename provided must be the exact match of the file to be excluded from checking.
+
+For your convenience, `CHANGELOG.md` is ignored by default (as specified in the file).
