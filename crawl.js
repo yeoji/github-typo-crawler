@@ -6,6 +6,19 @@ const {processResults} = require('./processResults');
 const proofreaderInput = 'proofreader.txt';
 const repo = process.argv[2];
 
+const ignoredFiles = function () {
+    const data = fs.readFileSync("./ignoredfiles.txt", 'utf8');
+    return data.split('\n');
+}();
+
+const isFileValid = async (fileName) => {
+    for (const e of ignoredFiles) {
+        if (e.length > 0 && fileName.endsWith(e)) {
+            return false;
+        }
+    }
+    return true;
+};
 
 const getRepoTree = async () => {
     const response = await axios.get(`https://api.github.com/repos/${repo}/git/trees/master`);
